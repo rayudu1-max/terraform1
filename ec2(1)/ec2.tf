@@ -27,7 +27,7 @@ resource "aws_instance" "expense" {
     name = var.instance_name[count.index]
     ami = var.img_id
     vpc_security_group_ids = [aws_security_group.allow_tf.id]
-    instance_type = var.instance_name[count.index] == "t2.small" : "t2.micro"
+    instance_type = var.instance_name[count.index] == "db" ? "t2.small" : "t2.micro"
 
     tags = merge(
         var.common_tags,
