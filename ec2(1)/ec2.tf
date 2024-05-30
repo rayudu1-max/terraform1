@@ -24,7 +24,6 @@ resource "aws_security_group" "allow_tf" {
 
 resource "aws_instance" "expense" {
     count = length(var.instance_name)
-    name = var.instance_name[count.index]
     ami = var.img_id
     vpc_security_group_ids = [aws_security_group.allow_tf.id]
     instance_type = var.instance_name[count.index] == "db" ? "t2.small" : "t2.micro"
